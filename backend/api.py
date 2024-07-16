@@ -81,7 +81,13 @@ async def query(payload: QueryPayload):
         results = swift_engine.query(payload.query)
         msg.good(f"Succesfully processed query: {payload.query}")
 
-        system_msg = results[0]["_additional"]["generate"]["groupedResult"]
+        if results[0]["_additional"]["generate"]["error"]:
+            system_msg = results[0]["_additional"]["generate"]["error"]
+        else:
+            system_msg = results[0]["_additional"]["generate"]["groupedResult"]
+
+        if system_msg == None:
+            msg.warn(results[0])
 
         return JSONResponse(
             content={
