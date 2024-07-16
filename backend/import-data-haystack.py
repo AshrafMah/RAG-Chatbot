@@ -83,7 +83,7 @@ def download_mdx(owner: str, repo: str, folder_path: str, token: str = None, doc
     return raw_docs
 
 def load_mdx(dir_path: Path, doc_type: str = "Documentation") -> list[Document]:
-    """Load .mdx files from a directory
+    """Load .mdx files from a local directory
     @parameter dir_path : Path - Directory path
     @parameter doc_type : str - Document type (code, blogpost, podcast)
     @returns list[Document] - A list of haystack documents
@@ -106,32 +106,6 @@ def load_mdx(dir_path: Path, doc_type: str = "Documentation") -> list[Document]:
     msg.good(f"All {len(raw_docs)} files successfully loaded inside {dir_path}")
 
     return raw_docs
-
-# def processing_data(raw_docs: list[Document]) -> list[Document]:
-#     """Splits a list of docs into smaller chunks
-#     @parameter raw_docs : list[Document] - List of docs
-#     @returns list[Document] - List of splitted docs
-#     """
-#     msg.info("Starting splitting process")
-
-#     # Performs basic cleaning (DocumentCleaner component)
-#     cleaner = DocumentCleaner(
-#         remove_empty_lines=False,
-#         remove_extra_whitespaces=False,
-#         remove_repeated_substrings=False,
-#     )
-#     cleaned_docs = cleaner.run(raw_docs)
-
-#     # Splitter the text by performing splits and adding metadata to the text (DocumentSplitter component)
-#     splitter = DocumentSplitter(
-#         split_by="sentence", 
-#         split_length=12, 
-#         split_overlap=4,
-#     )
-#     chunked_docs = splitter.run(cleaned_docs)
-
-#     msg.good(f"Successful splitting (total {len(chunked_docs)})")
-#     return chunked_docs
 
 def processing_data(raw_docs: list[Document]) -> list[Document]:
     """Splits a list of docs into smaller chunks
