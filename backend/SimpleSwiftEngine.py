@@ -46,3 +46,18 @@ class SimpleSwiftQueryEngine(SwiftQueryEngine):
         )
 
         return document
+    
+    def retrieve_all_documents(self) -> list:
+        """Return a list of dict of all document names and IDs
+        @returns list - List of dicts
+        """
+        query_results = (
+            SwiftQueryEngine.client.query.get(
+                class_name="Document", properties=["doc_name", "doc_type", "doc_link"]
+            )
+            .with_additional(properties=["id"])
+            .with_limit(1000)
+            .do()
+        )
+        results = query_results["data"]["Get"]["Document"]
+        return results
