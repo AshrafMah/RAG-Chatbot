@@ -28,13 +28,13 @@ export function ChatComponent({ onUserMessageSubmit }: ChatComponentProps) {
     }, [messageHistory]);
 
     return (
-        <div className="bg-gray-100 p-4 overflow-y-auto h-80">
+        <div className="bg-gray-100 p-4 overflow-y-auto h-[400px]">
             {messageHistory.map((message, index) => (
                 <div
                     ref={index === messageHistory.length - 1 ? lastMessageRef : null}
                     key={index}
                     className={`mb-4 ${message.type === 'user' ? 'text-right' : ''}`}>
-                    <span className={`inline-block p-3 rounded-xl animate-press-in shadow-md ${message.type === 'user' ? 'bg-yellow-200' : 'bg-white'}`}>
+                    <span className={`inline-block p-3 rounded-xl animate-press-in shadow-md ${message.type === 'user' ? 'bg-blue-200' : 'bg-white'}`}>
                         {message.type === 'system' ?
                             <Typewriter
                                 onInit={(typewriter) => {
