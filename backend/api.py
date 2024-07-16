@@ -16,11 +16,10 @@ load_dotenv()
 
 # Initialize the SimpleSwiftQueryEngine with API keys and Weaviate URL from environment variables
 swift_engine = SimpleSwiftQueryEngine(
-    os.environ.get("WEAVIATE_URL", ""),
-    os.environ.get("WEAVIATE_API_KEY", ""),
+    os.environ.get("WCD_URL", ""),
+    os.environ.get("WCD_API_KEY", ""),
     os.environ.get("OPENAI_API_KEY", ""),
 )
-
 
 msg.good("Connected to Weaviate Client")
 
