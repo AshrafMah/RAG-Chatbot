@@ -8,6 +8,7 @@ typer
 haystack-ai
 nltk
 fastapi
-uvicorn
+uvicorn[standard]
+gunicorn
 pytest
 mypy

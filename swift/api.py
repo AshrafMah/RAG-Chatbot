@@ -1,5 +1,4 @@
 import os
-import weaviate 
 
 from wasabi import msg 
 
@@ -26,7 +25,7 @@ msg.good("Connected to Weaviate Client")
 # FastAPI App
 app = FastAPI()
 
-origins = ["http://localhost:3000"]
+origins = ["http://localhost:3000", os.environ.get("VERBA_FRONTEND", "")]
 
 # Add middleware for handling Cross Origin Resource Sharing (CORS)
 app.add_middleware(
