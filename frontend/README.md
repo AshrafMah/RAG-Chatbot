@@ -1,6 +1,6 @@
-# 🎨 Verba - Frontend 🎨
+# 🎨 Swift - Frontend 🎨
 
-Verba is a React application powered by Next.js, which enables you to search and display your documents interactively. This document provides setup instructions for the frontend, component details, and maintenance procedures.
+Swift is a React application powered by Next.js, which enables you to search and display your documents interactively. This document provides setup instructions for the frontend.
 
 ## 🚀 Getting Started
 
@@ -12,8 +12,8 @@ Follow these steps to set up the frontend:
 
 ## 🔗 Code Maintenance
 
--   Run `npx prettier --write .` to format the codebase.
--   Lint the codebase with `npx eslint <FILENAME>`.
+- Run `npx prettier --write .` to format the codebase.
+- Lint the codebase with `npx eslint <FILENAME>`.
 
 ## 🎨 Styling
 

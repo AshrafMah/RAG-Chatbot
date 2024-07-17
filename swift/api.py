@@ -10,7 +10,7 @@ from pydantic import BaseModel
 
 from dotenv import load_dotenv
 
-from SimpleSwiftEngine import SimpleSwiftQueryEngine
+from SwiftEngine.SimpleSwiftEngine import SimpleSwiftQueryEngine
 
 load_dotenv()
 
@@ -102,6 +102,25 @@ async def query(payload: QueryPayload):
                 "documents": [],
             }
         )
+    
+    
+@app.post("/suggestions")
+async def suggestions(payload: QueryPayload):
+    try:
+        suggestions = swift_engine.get_suggestions(payload.query)
+
+        return JSONResponse(
+            content={
+                "suggestions": suggestions,
+            }
+        )
+    except Exception as e:
+        return JSONResponse(
+            content={
+                "suggestions": [],
+            }
+        )
+
 
 # Get document by ID endpoint    
 @app.post("/get_document")
@@ -118,7 +137,7 @@ async def get_document(payload: GetDocumentPayload):
             }
         )
     except Exception as e:
-        msg.fail(f"Document retrieval failed: {str(e)}")
+        msg.fail(f"All Document retrieval failed: {str(e)}")
         return JSONResponse(
             content={
                 "document": {},

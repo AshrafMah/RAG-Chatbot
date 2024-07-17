@@ -9,3 +9,5 @@ haystack-ai
 nltk
 fastapi
 uvicorn
+pytest
+mypy

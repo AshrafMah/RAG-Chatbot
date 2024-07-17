@@ -1,10 +1,10 @@
 # 🔧 Swift - Backend 🔧
 
-Welcome to the backend documentation for  Swift, designed to guide you through setting up, managing dependencies, and running this project.
+Welcome to the backend documentation for Swift, designed to guide you through setting up, managing dependencies, and running this project.
 
 ## 🗂️ Dataset
 
-We use Weaviate's documentation to power the Live demo.
+Currently, I only support pipelines for Weaviate's documentation to power the live demo.
 
 ## 📦 Setup & Requirements
 
@@ -40,20 +40,22 @@ The following steps guide you through setting up the backend manually
 Currently, there is no interface to upload data. For now it's done through multiple scripts:
 
 **Import dataset:**
-- Use the `python create-schema.py` script to create the two schemas
+- Use the `python WeaviateIngestion/create-schema.py` script to create the two schemas
     - Document (whole documents, not vectorized, contain meta data)
     - Chunks (document chunks, vectorized, contain uuid of original document)
 
-- We offer multiple approaches on loading, cleaning, chunking the data:
+- Use the `python WeaviateIngestion/create-cache-schema.py` script to create the cache schema
+
+- Use the `python WeaviateIngestion/create-suggestion-schema.py` script to create the cache schema
 
 - Make sure to add your github token to the `.env` file
 - ```export GITHUB_TOKEN="your-token"```
 
-- Haystack: `python import-data-haystack.py` (Downloads Weaviate data and uses Haystack to ingest them to Weaviate)
+- Use the `python WeaviateIngestion/import_weaviate.py` script to download, preprocess, and ingest Weaviate documentation into your Weaviate cluster
 
 ## Swift Engine
 
-The FastAPI communicates with the SwiftEngine, which is an interface for handling queries and returning results. It acts as a wrapper to enable Swift to use different approaches on querying and information retrieval:
+The FastAPI app communicates with the SwiftEngine, which is an interface for handling queries and returning results. It acts as a wrapper to enable Swift to use different approaches on querying and information retrieval:
 
 - `SimpleSwiftEngine`
-    - Uses Weaviate-only, to retrieve documents and the generate module to construct the system answers
+    - Uses Weaviate's `hybrid search` to retrieve documents and the `generate` module to construct the answers to the user's query
